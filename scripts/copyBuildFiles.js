@@ -3,8 +3,7 @@ var path = require('path');
 var fse = require('fs-extra');
 
 const files = [
-  'README.md',
-  'LICENSE'
+  'README.md'
 ];
 
 Promise.all(
