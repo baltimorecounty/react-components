@@ -1,7 +1,8 @@
 {
   "name": "baltimorecounty-react-components",
   "description": "A set of web components that can be used across the County websites",
-  "version": "0.0.9",
+  "version": "0.0.13",
+  "main": "lib/index.js",
   "author": {
     "name": "Baltimore County Developers",
     "email": "jepowell@baltimorecountymd.gov",
@@ -15,8 +16,9 @@
     "url": "https://github.com/baltimorecounty/react-components/issues"
   },
   "homepage": "https://baltimorecounty.github.io/react-components/",
-  "private": true,
   "dependencies": {
+	"ajv": "^6.0.0",
+	"ajv-keywords": "^3.2.0",
     "@fortawesome/fontawesome-svg-core": "^1.2.0",
     "@fortawesome/free-solid-svg-icons": "^5.1.0",
     "@fortawesome/react-fontawesome": "^0.1.0",
