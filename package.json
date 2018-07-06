@@ -1,7 +1,7 @@
 {
   "name": "baltimorecounty-react-components",
   "description": "A set of web components that can be used across the County websites",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "main": "lib/index.js",
   "author": {
     "name": "Baltimore County Developers",

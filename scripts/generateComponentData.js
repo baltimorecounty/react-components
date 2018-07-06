@@ -54,7 +54,7 @@ function getExampleData(examplesPath, componentName) {
     return {
       // By convention, component name should match the filename.
       // So remove the .js extension to get the component name.
-      name: file.slice(0, -4),
+      name: file.slice(0, -3),
       description: info.description,
       code: content
     };
