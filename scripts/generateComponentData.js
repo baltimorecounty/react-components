@@ -49,17 +49,38 @@ function getExampleData(examplesPath, componentName) {
   var examples = getExampleFiles(examplesPath, componentName);
   return examples.map(function(file) {
     var filePath = path.join(examplesPath, componentName, file)
-    var content = readFile(filePath)
-    var info = parse(content);
+	var content = readFile(filePath);
+	var fileType = file.split('.').pop();
+	var name = fileType === 'js' ? file.slice(0, -3) : file.slice(0, -5);
+    var info = fileType === 'js' ? parse(content) : content;
     return {
       // By convention, component name should match the filename.
       // So remove the .js extension to get the component name.
-      name: file.slice(0, -3),
+      name,
       description: info.description,
-      code: content
+	  code: content,
+	  fileType
     };
   });
 }
+
+function getExampleHtmlData(examplesPath, componentName) {
+	var examples = getExampleFiles(examplesPath, componentName);
+	return examples.map(function(file) {
+	  var filePath = path.join(examplesPath, componentName, file)
+	  var content = readFile(filePath)
+	  var info = parse(content);
+	  return {
+		// By convention, component name should match the filename.
+		// So remove the .js extension to get the component name.
+		name: file.slice(0, -3),
+		description: info.description,
+		code: content
+	  };
+	});
+  }
+
+
 
 function getExampleFiles(examplesPath, componentName) {
   var exampleFiles = [];
