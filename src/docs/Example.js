@@ -20,15 +20,15 @@ class Example extends React.Component {
 
   render() {
     const {showCode} = this.state;
-    const {code, description, name} = this.props.example;
+    const {code, description, name, fileType } = this.props.example;
 	// Must use CommonJS require to dynamically require because ES Modules must be statically analyzable.
-	console.log(this.props.componentName, name);
     const ExampleComponent = require(`./examples/${this.props.componentName}/${name}`).default;
     return (
       <div className="example">
         {description && <h4>{description}</h4> }
 
-        <ExampleComponent />
+		{ fileType === 'js' && <ExampleComponent /> }
+		{ fileType === 'html' && <div dangerouslySetInnerHTML={{ __html: code }}/> }
 
         <p>
           <button onClick={this.toggleCode}>
@@ -36,7 +36,7 @@ class Example extends React.Component {
           </button>
         </p>
 
-        {showCode && <CodeExample>{code}</CodeExample>}
+        {showCode && <CodeExample language={fileType}>{code}</CodeExample>}
       </div>
     )
   }
