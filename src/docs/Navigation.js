@@ -45,7 +45,6 @@ class Navigation extends React.Component {
                 mode="inline"
                 openKeys={this.state.openKeys}
                 onOpenChange={this.onOpenChange}
-                style={{ width: 256 }}
             >
                 {components.map((component, index) => {
                     return (

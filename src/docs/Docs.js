@@ -2,6 +2,10 @@ import React from 'react';
 import Navigation from './Navigation';
 import ComponentPage from './ComponentPage';
 import componentData from '../../config/componentData';
+import { Layout, Menu, Breadcrumb, Icon } from 'antd';
+
+const { SubMenu } = Menu;
+const { Header, Content, Sider } = Layout;
 
 export default class Docs extends React.Component {
     constructor(props) {
@@ -24,18 +28,33 @@ export default class Docs extends React.Component {
             : componentData[0];
 
         return (
-            <React.Fragment>
-                <header>
-                    <h1>Baltimore County Web Components</h1>
-                    <p>A set of React components that can be used across the County websites.</p>
-                </header>
-                <div>
-                    <Navigation
-                        components={componentData}
-                    />
-                    <ComponentPage component={component} />
-                </div>
-            </React.Fragment>
+            <Layout style={{ height:"100vh" }}>
+                <Header className="header">
+                    <h1 className="app-header">Baltimore County Web Components</h1>
+                </Header>
+                <Layout>
+                    <Sider width={250}>
+                        <Navigation components={componentData} />
+                    </Sider>
+                    <Layout style={{ padding: '0 24px 24px' }}>
+                        <Breadcrumb style={{ margin: '16px 0' }}>
+                            <Breadcrumb.Item>Home</Breadcrumb.Item>
+                            <Breadcrumb.Item>List</Breadcrumb.Item>
+                            <Breadcrumb.Item>App</Breadcrumb.Item>
+                        </Breadcrumb>
+                        <Content
+                            style={{
+                                background: '#fff',
+                                padding: 24,
+                                margin: 0,
+                                minHeight: 280
+                            }}
+                        >
+                            <ComponentPage component={component} />
+                        </Content>
+                    </Layout>
+                </Layout>
+            </Layout>
         );
     }
 }
