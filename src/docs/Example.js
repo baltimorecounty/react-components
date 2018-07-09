@@ -7,8 +7,6 @@ import { Tabs } from 'antd';
 
 const TabPane = Tabs.TabPane;
 
-
-
 // This way is easy, but adds 214K gzipped to bundle since all langs are included.
 // import Highlight from 'react-highlight';
 
@@ -26,48 +24,46 @@ class Example extends React.Component {
     };
 
     render() {
-		const { showCode } = this.state;
-		const {
-			componentName,
-			componentProps
-		} = this.props;
-
+        const { showCode } = this.state;
+        const { componentName, componentProps } = this.props;
 
         const reactExample = this.props.examples.filter(
             example => example.fileType === 'js'
         )[0];
         const htmlExample = this.props.examples.filter(
             example => example.fileType === 'html'
-		)[0];
+        )[0];
+        const razorExample = this.props.examples.filter(
+            example => example.fileType === 'cshtml'
+        )[0];
 
         const buildTabContent = example => {
-			const {
-				code,
-				fileType,
-				name,
-				type
-			} = example;
+			const { code, fileType, name } = example;
 
-			const ExampleComponent = require(`./examples/${componentName}/${name}`).default;
+            const ExampleComponent = require(`./examples/${componentName}/${name}`)
+                .default;
+            const isFileRazor = fileType === 'cshtml';
+            const isFileHtml = fileType === 'html';
+            const isFileReact = fileType === 'js';
 
             return (
                 <div className={`example example--${name}`}>
-                    {fileType === 'js' && <ExampleComponent />}
-                    {fileType === 'html' && (
+                    {isFileReact && <ExampleComponent />}
+                    {isFileHtml && (
                         <div dangerouslySetInnerHTML={{ __html: code }} />
                     )}
 
-                    <p>
+                    {!isFileRazor && (
                         <button onClick={this.toggleCode}>
                             {showCode ? 'Hide' : 'Show'} Code
                         </button>
-                    </p>
-
-                    {showCode && (
-                        <CodeExample language={type}>{code}</CodeExample>
                     )}
 
-                    {fileType === 'js' && (
+                    {(showCode || isFileRazor) && (
+                        <CodeExample language={fileType}>{code}</CodeExample>
+                    )}
+
+                    {isFileReact && (
                         <React.Fragment>
                             <h4>Props</h4>
                             {componentProps ? (
@@ -81,19 +77,22 @@ class Example extends React.Component {
             );
         };
 
-        // Must use CommonJS require to dynamically require because ES Modules must be statically analyzable.
-
-
         return (
             <Tabs defaultActiveKey="1">
                 <TabPane tab="React" key="1">
-                    { reactExample ? buildTabContent(reactExample) : "No React example provided."}
+                    {reactExample
+                        ? buildTabContent(reactExample)
+                        : 'No React example provided.'}
                 </TabPane>
                 <TabPane tab="Html" key="2">
-					{ htmlExample ? buildTabContent(htmlExample) : "No Html example provided."}
+                    {htmlExample
+                        ? buildTabContent(htmlExample)
+                        : 'No Html example provided.'}
                 </TabPane>
                 <TabPane tab="Razor" key="3">
-                    Not Implement
+                    {razorExample
+                        ? buildTabContent(razorExample)
+                        : 'No Razor example provided.'}
                 </TabPane>
             </Tabs>
         );
