@@ -9,7 +9,7 @@ import xml from 'highlight.js/lib/languages/xml';
 
 class CodeExample extends React.Component {
     componentDidMount() {
-        if (this.props.language === 'html') {
+        if (this.props.language.indexOf('html') > -1) {
             hljs.registerLanguage('xml', xml);
         } else {
             hljs.registerLanguage('javascript', javascript);
