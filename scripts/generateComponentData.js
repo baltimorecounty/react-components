@@ -79,21 +79,6 @@ function getExampleData(examplesPath, componentName) {
     });
 }
 
-function getExampleHtmlData(examplesPath, componentName) {
-    var examples = getExampleFiles(examplesPath, componentName);
-    return examples.map(function(file) {
-        var filePath = path.join(examplesPath, componentName, file);
-        var content = readFile(filePath);
-        var info = parse(content);
-        return {
-            // By convention, component name should match the filename.
-            // So remove the .js extension to get the component name.
-            name: file.slice(0, -3),
-            description: info.description,
-            code: content
-        };
-    });
-}
 
 function getExampleFiles(examplesPath, componentName) {
     var exampleFiles = [];
