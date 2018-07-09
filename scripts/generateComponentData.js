@@ -66,7 +66,7 @@ function getExampleData(examplesPath, componentName) {
         var filePath = path.join(examplesPath, componentName, file);
         var content = readFile(filePath);
         var fileType = file.split('.').pop();
-        var name = fileType === 'js' ? file.slice(0, -3) : file.slice(0, -5);
+		var name = file.split('.')[0];
         var info = fileType === 'js' ? parse(content) : content;
         return {
             // By convention, component name should match the filename.
