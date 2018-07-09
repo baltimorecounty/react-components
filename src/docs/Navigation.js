@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Menu, Icon } from 'antd';
+import { getUniqueValuesByKey } from '../utilities/helpers';
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -12,16 +13,6 @@ class Navigation extends React.Component {
             openKeys: [],
             rootSubmenuKeys: this.props.components.slice()
         };
-	}
-
-	getUniqueValuesByKey(arr, key) {
-		return arr.reduce((uniqueKeys, currentValue, currentIndex) => {
-			const val = currentValue[key];
-			if (!uniqueKeys.includes(val)) {
-				uniqueKeys.push(val);
-			}
-			return uniqueKeys;
-		}, []);
 	}
 
     onOpenChange = openKeys => {
@@ -66,7 +57,7 @@ class Navigation extends React.Component {
                                     key={`${component.name}-examples`}
                                     title="Examples"
                                 >
-                                    {this.getUniqueValuesByKey(component.examples, 'name').map(exampleName => (
+                                    {getUniqueValuesByKey(component.examples, 'name').map(exampleName => (
                                         <Menu.Item key={`${exampleName}-1`}>
                                             <a
                                                 href={`#${component.name}-${
