@@ -25,12 +25,14 @@ export default class Docs extends React.Component {
         const { route } = this.state;
         const component = route
             ? componentData.filter(component => component.name === route)[0]
-            : componentData[0];
+			: componentData[0];
 
         return (
-            <Layout style={{ height:"100vh" }}>
+            <Layout style={{ height: '100vh' }}>
                 <Header className="header">
-                    <h1 className="app-header">Baltimore County Web Components</h1>
+                    <h1 className="app-header">
+                        Baltimore County Web Components
+                    </h1>
                 </Header>
                 <Layout>
                     <Sider width={250}>
