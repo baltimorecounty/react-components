@@ -31,9 +31,7 @@ export default class Docs extends React.Component {
                 </header>
                 <div>
                     <Navigation
-                        components={componentData.map(
-                            component => component.name
-                        )}
+                        components={componentData}
                     />
                     <ComponentPage component={component} />
                 </div>
