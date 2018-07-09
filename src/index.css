@@ -33,15 +33,32 @@ table {
 }
 
 /* Documentation site component styles */
-header {
-	background: #333;
-	color: lightgray;
+header,
+.ant-layout-header {
+	background: #c51110;
+	color: white;
 	padding: 15px;
 }
 
-header h1 {
+header h1,
+.app-header {
+	color: white !important;
 	margin: 0 auto 5px;
 }
+
+.logo,
+.app-header {
+	display: inline-block;
+}
+
+.ant-layout-header {
+	height: auto;
+	line-height: auto;
+}
+.ant-layout-sider {
+	background: #333;
+}
+
 header p {
 	margin: 0;
 }
@@ -94,8 +111,4 @@ td {
 .navigation li a {
 	display: block;
 	text-decoration: none;
-}
-
-.componentpage {
-    margin-left: 275px;
 }
